@@ -13,3 +13,61 @@ datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
 }
+
+// Define your database schema here
+model Product {
+  id        String   @id @default(uuid())
+  name      String
+  category  String // "comida" | "bebida" | "entrada"
+  price     Float
+  available Boolean  @default(true)
+  createdAt DateTime @default(now())
+
+  comboItems ComboItem[]
+  orderItems OrderItem[]
+}
+
+model Combo {
+  id        String   @id @default(uuid())
+  name      String
+  price     Float
+  available Boolean  @default(true)
+  createdAt DateTime @default(now())
+
+  comboItems ComboItem[]
+  orderItems OrderItem[]
+}
+
+model ComboItem {
+  id        String @id @default(uuid())
+  comboId   String
+  productId String
+  quantity  Int
+
+  combo   Combo   @relation(fields: [comboId], references: [id], onDelete: Cascade)
+  product Product @relation(fields: [productId], references: [id], onDelete: Cascade)
+}
+
+model Order {
+  id         String   @id @default(uuid())
+  buyerEmail String?
+  total      Float
+  status     String   @default("pending") // pending | paid | cancelled
+  createdAt  DateTime @default(now())
+
+  orderItems OrderItem[]
+}
+
+model OrderItem {
+  id        String  @id @default(uuid())
+  orderId   String
+  productId String? // si es producto directo
+  comboId   String? // si es combo
+  quantity  Int
+  price     Float // unitario
+  subtotal  Float
+
+  order   Order    @relation(fields: [orderId], references: [id], onDelete: Cascade)
+  product Product? @relation(fields: [productId], references: [id])
+  combo   Combo?   @relation(fields: [comboId], references: [id])
+}
