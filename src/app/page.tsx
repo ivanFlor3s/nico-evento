@@ -11,7 +11,9 @@ export default function Home() {
                 <Hero />
             </section>
 
-            <Where />
+            <section id="donde">
+                <Where />
+            </section>
 
             {/* Entradas Section */}
             <section id="entradas">

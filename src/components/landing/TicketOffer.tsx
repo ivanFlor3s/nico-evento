@@ -2,7 +2,7 @@ import OfferCard from '../shared/OfferCard';
 
 const TicketOffer = () => {
     return (
-        <div className="min-h-screen flex flex-col items-center justify-center bg-neutral-100">
+        <div className="min-h-screen mt-4 md:mt-0 flex flex-col items-center justify-center bg-neutral-100">
             <h2 className="text-4xl font-bold mb-4 text-chelsea-cucumber-500">Exclusive Ticket Offer</h2>
             <p className="text-lg">Get your tickets now and enjoy a special discount!</p>
             <div className="mt-14 grid md:grid-cols-2 lg:grid-cols-3 gap-8">
