@@ -27,16 +27,27 @@ model Product {
   orderItems OrderItem[]
 }
 
-model Combo {
-  id                 String   @id @default(uuid())
-  name               String
-  price              Float
-  available          Boolean  @default(true)
-  isOfferedInLanding Boolean  @default(false)
-  createdAt          DateTime @default(now())
+model LandingOffer {
+  id          String   @id @default(uuid())
+  name        String
+  description String
+  price       Float
+  icon        String
+  createdAt   DateTime @default(now())
+  comboId     String   @unique
+  combo       Combo    @relation(name: "LandingOfferToCombo", fields: [comboId], references: [id], onDelete: Cascade)
+}
 
-  comboItems ComboItem[]
-  orderItems OrderItem[]
+model Combo {
+  id        String   @id @default(uuid())
+  name      String
+  price     Float
+  available Boolean  @default(true)
+  createdAt DateTime @default(now())
+
+  comboItems   ComboItem[]
+  orderItems   OrderItem[]
+  landingOffer LandingOffer? @relation(name: "LandingOfferToCombo")
 }
 
 model ComboItem {
