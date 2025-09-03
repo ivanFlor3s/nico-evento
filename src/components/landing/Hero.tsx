@@ -5,9 +5,9 @@ const Hero: React.FC = () => {
         <div className="min-h-screen bg-chelsea-cucumber-500 flex flex-col items-center justify-center h-full ">
             <div className="">
                 <div className="text-center  px-4">
-                    <h1 className="text-4xl md:text-8xl text-amber-200 font-bold">Evento Peña</h1>
-                    <p className="text-md md:text-2xl text-neutral-100 py-6 text-balance">
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Velit laudantium itaque iusto accusamus voluptatum, tempora neque blanditiis fugiat ab. Doloribus.
+                    <h1 className="text-4xl md:text-8xl text-amber-200 font-bold">Festival de Santa Lucia</h1>
+                    <p className="text-md md:text-2xl w-full lg:w-2/3 mx-auto  text-neutral-100 py-6 text-balance">
+                        Un encuentro único para compartir en familia y con amigos: música en vivo, juegos, sabores irresistibles y la alegría de nuestra comunidad reunida en una gran fiesta.
                     </p>
                 </div>
             </div>
