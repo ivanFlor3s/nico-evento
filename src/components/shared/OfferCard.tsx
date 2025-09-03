@@ -1,4 +1,8 @@
-'use client';
+import { redirect } from 'next/navigation';
+import { ArrowRight } from 'lucide-react';
+import MercadoPagoConfig from 'mercadopago';
+import { MercadoPagoService } from '@/app/services/mercado-pago';
+
 interface OfferCardProps {
     title: string;
     description?: string;
@@ -47,6 +51,13 @@ export default function OfferCard({ title, description, price, variant = 'primar
         return styles[variant as keyof typeof styles] || styles.primary;
     };
 
+    const handlePayment = async () => {
+        'use server';
+        const service = new MercadoPagoService();
+        const url = await service.createPreference();
+        if (url) redirect(url);
+    };
+
     const variantStyles = getVariantStyles(variant);
 
     // Formatear precio
@@ -74,28 +85,15 @@ export default function OfferCard({ title, description, price, variant = 'primar
                 <div className={`text-3xl font-bold ${variantStyles.text} mb-6`}>{formatPrice(price)}</div>
 
                 {/* Botón de compra */}
-                <button
-                    className={`w-full ${variantStyles.button}  font-bold py-2 px-6 rounded-full transition-colors duration-200 transform hover:scale-101 active:scale-95 cursor-pointer flex flex-row justify-between items-center`}
-                >
-                    <span>Ir a comprar</span>{' '}
-                    <span>
-                        <svg
-                            xmlns="http://www.w3.org/2000/svg"
-                            width="24"
-                            height="24"
-                            viewBox="0 0 24 24"
-                            fill="none"
-                            stroke="currentColor"
-                            strokeWidth="2"
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                            className="lucide lucide-move-right-icon lucide-move-right"
-                        >
-                            <path d="M18 8L22 12L18 16" />
-                            <path d="M2 12H22" />
-                        </svg>
-                    </span>
-                </button>
+
+                <form action={handlePayment}>
+                    <button
+                        type="submit"
+                        className={`w-full ${variantStyles.button}  font-bold py-2 px-6 rounded-full transition-colors duration-200 transform hover:scale-101 active:scale-95 cursor-pointer flex flex-row justify-between items-center`}
+                    >
+                        <span>Ir a comprar</span> <ArrowRight className="h-4 w-4" />
+                    </button>
+                </form>
 
                 {/* Texto aclaratorio (opcional) */}
                 {mutedText && <p className="text-neutral-50 text-xs mt-3 italic">{mutedText}</p>}
