@@ -6,7 +6,11 @@
         "dev": "next dev --turbopack",
         "build": "next build --turbopack",
         "start": "next start",
-        "lint": "eslint"
+        "lint": "eslint",
+        "db:generate": "prisma generate",
+        "db:push": "prisma db push",
+        "db:seed": "tsx prisma/seed.ts",
+        "db:studio": "prisma studio"
     },
     "dependencies": {
         "@prisma/client": "^6.15.0",
@@ -27,9 +31,7 @@
         "eslint-config-next": "15.5.2",
         "prisma": "^6.15.0",
         "tailwindcss": "^4",
+        "tsx": "^4.7.1",
         "typescript": "^5"
-    },
-    "overrides": {
-        "node-fetch": "2.6.7"
     }
 }
