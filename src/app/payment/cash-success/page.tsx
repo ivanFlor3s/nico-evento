@@ -1,5 +1,5 @@
-'use client';
 import { Suspense } from 'react';
+import Link from 'next/link';
 import { CheckCircle, Mail, Calendar, MapPin, Clock } from 'lucide-react';
 import { simplifyOrderId } from '@/lib/order-id-format';
 
@@ -63,9 +63,9 @@ function CashSuccessContent({ searchParams }: CashSuccessContentProps) {
 
                         {/* Botones de acción */}
                         <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                            <button onClick={() => (window.location.href = '/')} className="px-6 py-3 bg-chelsea-cucumber-600 text-white rounded-lg font-semibold hover:bg-chelsea-cucumber-700 transition-colors">
+                            <Link href="/" className="px-6 py-3 bg-chelsea-cucumber-600 text-white rounded-lg font-semibold hover:bg-chelsea-cucumber-700 transition-colors">
                                 🏠 Volver al Inicio
-                            </button>
+                            </Link>
                         </div>
                     </div>
                 </div>
