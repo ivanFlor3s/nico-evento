@@ -1,4 +1,4 @@
-import { MercadoPagoConfig, Preference } from 'mercadopago';
+import { MercadoPagoConfig, Payment, Preference } from 'mercadopago';
 
 interface PreferenceData {
     items: {
@@ -49,5 +49,10 @@ export class MercadoPagoService {
             init_point: response.init_point,
             response: response
         };
+    }
+
+    async getPayment(id: number) {
+        const payment = await new Payment(this.client).get({ id });
+        return payment;
     }
 }

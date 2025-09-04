@@ -68,8 +68,8 @@ model Order {
   payMethod     String // "mercadopago" | "cash"
   total         Float
   status        String   @default("pending") // pending | paid | cancelled
-  paymentId     String? // ID del pago en MercadoPago
-  preferenceId  String? // ID de la preferencia de MercadoPago
+  paymentId     BigInt?  @unique // ID del pago en MercadoPago
+  preferenceId  String?  @unique // ID de la preferencia de MercadoPago
   createdAt     DateTime @default(now())
   updatedAt     DateTime @updatedAt
 

@@ -32,6 +32,18 @@ export const getAllOffersForBuy = () => {
     })
 }
 
+export const updateOrderStatus = (orderId: string, paymentId: number, status: 'pending' | 'approved' | 'rejected') => {
+    return prisma.order.update({
+        where: {
+            id: orderId
+        },
+        data: {
+            status,
+            paymentId: BigInt(paymentId)
+        }
+    })
+}
+
 export const getOfferLandingById = (id: string) => {
     return prisma.landingOffer.findUnique({
         where: {
@@ -47,7 +59,7 @@ export interface OrderData {
     payMethod: string; // "mercadopago" | "cash"
     total: number;
     status: string; // "pending" | "paid" | "cancelled"
-    paymentId?: string; // ID del pago en MercadoPago
+    paymentId?: number; // ID del pago en MercadoPago
     preferenceId?: string; // ID de la preferencia de MercadoPago        
 }
 
@@ -75,6 +87,18 @@ export const createOrder = (orderData: OrderData, orderItems: OrderItemData[]) =
                     combo: true
                 }
             }
+        }
+    })
+}
+
+
+export const orderSetPreferenceId = async (orderId: string, preferenceId: string) => {
+    return prisma.order.update({
+        where: {
+            id: orderId
+        },
+        data: {
+            preferenceId
         }
     })
 }

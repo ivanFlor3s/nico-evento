@@ -3,9 +3,9 @@
 import { CartItem } from '@/components/shop/CartSidebar';
 import { CustomerInfo } from '@/components/shop/CustomerForm';
 import { MercadoPagoService } from '@/app/services/mercado-pago';
-import { createOrder, OrderData, OrderItemData } from '@/lib/db/db';
+import { createOrder, OrderData, OrderItemData, orderSetPreferenceId } from '@/lib/db/db';
 
-export async function createPaymentPreference(cartItems: CartItem[], customerInfo: CustomerInfo) {
+export async function createPaymentPreference(orderId: string, cartItems: CartItem[], customerInfo: CustomerInfo) {
     try {
 
 
@@ -44,6 +44,7 @@ export async function createPaymentPreference(cartItems: CartItem[], customerInf
                 pending: `${process.env.NEXT_PUBLIC_BASE_URL}/payment/pending`
             },
             metadata: {
+                internal_order_id: orderId,
                 buyer_name: customerInfo.firstName,
                 buyer_last_name: customerInfo.lastName,
                 buyer_email: customerInfo.email,
@@ -79,11 +80,30 @@ export const startPayment = async (cartItems: CartItem[], customerInfo: Customer
     try {
         console.log('🚀 Iniciando proceso completo de pago...');
 
+
         // Calcular el total
         const total = cartItems.reduce((sum, item) => sum + (item.price * item.quantity), 0);
 
-        // 1. Crear la preferencia de pago en MercadoPago
-        const preferenceResult = await createPaymentPreference(cartItems, customerInfo);
+        // 2. Crear la orden en la base de datos
+        const orderResult = await createOrderInDb(
+            cartItems,
+            customerInfo,
+            'mercadopago',
+            total,
+            undefined,
+            undefined
+        );
+
+        if (!orderResult.success) {
+            console.error('⚠️ Error creando orden en BD, pero la preferencia ya fue creada',
+                JSON.stringify({ cartItems, customerInfo }));
+            return {
+                success: false,
+                error: `Error creando orden en BD: ${orderResult.error}`
+            };
+        }
+
+        const preferenceResult = await createPaymentPreference(orderResult.order?.id as string, cartItems, customerInfo);
 
         if (!preferenceResult.success) {
             return {
@@ -92,21 +112,7 @@ export const startPayment = async (cartItems: CartItem[], customerInfo: Customer
             };
         }
 
-        // 2. Crear la orden en la base de datos
-        const orderResult = await createOrderInDb(
-            cartItems,
-            customerInfo,
-            'mercadopago',
-            total,
-            undefined, // paymentId se asignará cuando el pago sea confirmado
-            preferenceResult.preferenceId
-        );
-
-        if (!orderResult.success) {
-            console.error('⚠️ Error creando orden en BD, pero la preferencia ya fue creada',
-                JSON.stringify({ cartItems, customerInfo }));
-            // Aún podemos continuar con el pago aunque falle la BD
-        }
+        await orderSetPreferenceId(orderResult.orderId as string, preferenceResult.preferenceId as string);
 
         console.log('✅ Proceso completo exitoso');
 
@@ -128,7 +134,7 @@ export const startPayment = async (cartItems: CartItem[], customerInfo: Customer
     }
 }
 
-const createOrderInDb = async (cartItems: CartItem[], customerInfo: CustomerInfo, paymentMethod: string, total: number, paymentId?: string, preferenceId?: string) => {
+const createOrderInDb = async (cartItems: CartItem[], customerInfo: CustomerInfo, paymentMethod: string, total: number, paymentId?: number, preferenceId?: string) => {
     try {
         // Preparar datos de la orden
         const orderData: OrderData = {
