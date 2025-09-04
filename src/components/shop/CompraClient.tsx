@@ -5,14 +5,7 @@ import CartSidebar, { CartItem } from './CartSidebar';
 import ComboList from './ComboList';
 import ProductList from './ProductList';
 import { CustomerInfo } from './CustomerForm';
-import { Product } from '@/generated/prisma';
-
-interface Combo {
-    id: string;
-    name: string;
-    price: number;
-    description?: string;
-}
+import { Product, Combo } from '@/generated/prisma';
 
 interface CompraClientProps {
     combos: Combo[];

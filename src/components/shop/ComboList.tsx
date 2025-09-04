@@ -1,13 +1,7 @@
 'use client';
 
+import { Combo } from '@/generated/prisma';
 import { useState } from 'react';
-
-interface Combo {
-    id: string;
-    name: string;
-    price: number;
-    description?: string;
-}
 
 interface ComboListProps {
     combos: Combo[];
