@@ -52,7 +52,7 @@ export default function OfferCard({ id, title, description, price, variant = 'pr
 
     const variantStyles = getVariantStyles(variant);
 
-    // Formatear precio
+    // Formatear precios
     const formatPrice = (price: number) => {
         return new Intl.NumberFormat('es-AR', {
             style: 'currency',

@@ -1,6 +1,6 @@
 'use client';
 
-import { Minus, Plus, ShoppingCart, Trash2 } from 'lucide-react';
+import { Minus, Plus, ShoppingCart } from 'lucide-react';
 import CustomerForm, { CustomerInfo } from './CustomerForm';
 import { useState } from 'react';
 
@@ -84,9 +84,6 @@ export default function CartSidebar({ items, onUpdateQuantity, onRemoveItem, onC
                             <div key={item.id} className="border border-gray-200 rounded-lg p-4">
                                 <div className="flex justify-between items-start mb-2">
                                     <h4 className="font-medium text-gray-800 text-sm leading-tight">{item.name}</h4>
-                                    <button onClick={() => onRemoveItem(item.id)} className="text-red-500 hover:text-red-700 transition-colors" title="Eliminar item">
-                                        <Trash2 className="w-4 h-4" />
-                                    </button>
                                 </div>
 
                                 <div className="flex items-center justify-between">

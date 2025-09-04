@@ -41,7 +41,7 @@ export default function ComboList({ combos, onComboSelect }: ComboListProps) {
     return (
         <div className="flex-1">
             <div className="mb-6">
-                <h2 className="text-2xl font-bold text-gray-800 mb-2">Agregale combos a tu entrada</h2>
+                <h2 className="text-2xl font-bold text-gray-800 mb-2">📦 Agregale combos a tu entrada</h2>
                 <p className="text-gray-600">Elegí los combos que querés y ajustá las cantidades en el carrito</p>
             </div>
 

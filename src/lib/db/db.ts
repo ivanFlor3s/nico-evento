@@ -8,20 +8,8 @@ export const getLandingOffers = () => {
     })
 }
 
-export const getAllOffersForBuy = () => {
+export const getAllCombosForBuy = () => {
     return prisma.combo.findMany({
-        where: {
-            OR: [
-                {
-                    landingOffer: null // Combos sin landing offer
-                },
-                {
-                    name: {
-                        contains: "Entrada General" // Excepción para Entrada General
-                    }
-                }
-            ]
-        },
         include: {
             comboItems: {
                 include: {
@@ -30,6 +18,11 @@ export const getAllOffersForBuy = () => {
             }
         }
     })
+}
+
+
+export const getProducts = () => {
+    return prisma.product.findMany()
 }
 
 export const updateOrderStatus = (orderId: string, paymentId: number, status: 'pending' | 'approved' | 'rejected') => {

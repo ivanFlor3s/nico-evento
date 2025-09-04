@@ -3,7 +3,9 @@
 import { useState } from 'react';
 import CartSidebar, { CartItem } from './CartSidebar';
 import ComboList from './ComboList';
+import ProductList from './ProductList';
 import { CustomerInfo } from './CustomerForm';
+import { Product } from '@/generated/prisma';
 
 interface Combo {
     id: string;
@@ -14,13 +16,12 @@ interface Combo {
 
 interface CompraClientProps {
     combos: Combo[];
-    initialOfferName: string;
-    initialOfferPrice: number;
-    initialOfferId: string;
+    productsWithoutEntrada: Product[];
+    entradaGeneral: Product | undefined;
 }
 
-const CompraClient: React.FC<CompraClientProps> = ({ combos, initialOfferName, initialOfferPrice, initialOfferId }: CompraClientProps) => {
-    const [cartItems, setCartItems] = useState<CartItem[]>([{ id: initialOfferId, name: initialOfferName, price: initialOfferPrice, quantity: 1, type: 'combo' as const }]);
+const CompraClient: React.FC<CompraClientProps> = ({ combos, productsWithoutEntrada, entradaGeneral }) => {
+    const [cartItems, setCartItems] = useState<CartItem[]>([]);
 
     const handleComboSelect = (combo: Combo) => {
         const alreadySelected = cartItems.find((item) => item.id === combo.id);
@@ -42,6 +43,33 @@ const CompraClient: React.FC<CompraClientProps> = ({ combos, initialOfferName, i
                             price: combo.price,
                             quantity: 1,
                             type: 'combo' as const,
+                        },
+                    ];
+                }
+            });
+        }
+    };
+
+    const handleProductSelect = (product: Product) => {
+        const alreadySelected = cartItems.find((item) => item.id === product.id);
+
+        if (alreadySelected) {
+            removeFromCart(product.id);
+        } else {
+            setCartItems((prevItems) => {
+                const existingItem = prevItems.find((item) => item.id === product.id);
+
+                if (existingItem) {
+                    return prevItems.map((item) => (item.id === product.id ? { ...item, quantity: item.quantity + 1 } : item));
+                } else {
+                    return [
+                        ...prevItems,
+                        {
+                            id: product.id,
+                            name: product.name,
+                            price: product.price,
+                            quantity: 1,
+                            type: 'product' as const,
                         },
                     ];
                 }
@@ -122,13 +150,20 @@ const CompraClient: React.FC<CompraClientProps> = ({ combos, initialOfferName, i
             alert('Hubo un error al procesar tu reserva. Por favor, intentá de nuevo.');
         }
     };
-
     return (
         <div className="min-h-screen bg-gray-50 p-6">
             <div className="max-w-7xl mx-auto">
-                <div className="flex flex-col md:flex-row gap-8">
-                    <ComboList combos={combos} onComboSelect={handleComboSelect} />
+                <div className="flex flex-col xl:flex-row gap-8">
+                    {/* Sección de productos y combos */}
+                    <div className="flex-1 space-y-8">
+                        <ProductList products={[entradaGeneral as Product]} onProductSelect={handleProductSelect} />
 
+                        <ComboList combos={combos} onComboSelect={handleComboSelect} />
+
+                        {productsWithoutEntrada.length > 0 && <ProductList products={productsWithoutEntrada} onProductSelect={handleProductSelect} />}
+                    </div>
+
+                    {/* Carrito */}
                     <CartSidebar items={cartItems} onUpdateQuantity={handleUpdateQuantity} onRemoveItem={handleRemoveItem} onCheckout={handleCheckout} onCashPayment={handleCashPayment} />
                 </div>
             </div>
