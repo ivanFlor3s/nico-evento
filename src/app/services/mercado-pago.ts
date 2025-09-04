@@ -40,8 +40,6 @@ export class MercadoPagoService {
                     currency_id: item.currency_id || 'ARS'
                 })),
                 back_urls: data.back_urls,
-                auto_return: data.auto_return,
-                notification_url: data.notification_url,
                 metadata: data.metadata
             }
         });

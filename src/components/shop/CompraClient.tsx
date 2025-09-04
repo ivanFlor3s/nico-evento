@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import CartSidebar, { CartItem } from './CartSidebar';
 import ComboList from './ComboList';
+import { CustomerInfo } from './CustomerForm';
 
 interface Combo {
     id: string;
@@ -60,28 +61,26 @@ const CompraClient: React.FC<CompraClientProps> = ({ combos, initialOfferName, i
         removeFromCart(id);
     };
 
-    const handleCheckout = async () => {
+    const handleCheckout = async (customerInfo: CustomerInfo) => {
         if (cartItems.length === 0) {
             alert('Tu carrito está vacío');
             return;
         }
 
         try {
-            console.log('🛒 Iniciando proceso de pago...');
-
             // Importar dinámicamente la Server Action
-            const { createPaymentPreference } = await import('@/app/actions/payment');
+            const { startPayment } = await import('@/app/actions/payment');
 
-            // Crear la preferencia de pago
-            const result = await createPaymentPreference(cartItems);
-
+            // Iniciar el proceso completo de pago (preferencia + orden en BD)
+            const result = await startPayment(cartItems, customerInfo);
+            console.log('🚀 Resultado del proceso de pago:', JSON.stringify(result));
             if (result.success && result.initPoint) {
                 console.log('✅ Preferencia creada, redirigiendo a MercadoPago...');
 
                 // Redirigir a MercadoPago
                 window.location.href = result.initPoint;
             } else {
-                console.error('❌ Error creando preferencia:', result.error);
+                console.error('❌ Error en el proceso de pago:', result.error);
                 alert(`Error al procesar el pago: ${result.error}`);
             }
         } catch (error) {

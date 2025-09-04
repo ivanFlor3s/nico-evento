@@ -42,7 +42,7 @@ export default async function Compra({ params }: { params: Promise<{ offerId: st
     return (
         <>
             <CurrentOffer offerName={offer.name} offerIcon={offer.icon} />
-            <CompraClient initialOfferId={offer.id} initialOfferName={offer.name} initialOfferPrice={offer.price} combos={formattedCombos} />
+            <CompraClient initialOfferId={offer.comboId} initialOfferName={offer.name} initialOfferPrice={offer.price} combos={formattedCombos} />
         </>
     );
 }

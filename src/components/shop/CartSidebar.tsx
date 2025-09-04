@@ -1,6 +1,8 @@
 'use client';
 
 import { Minus, Plus, ShoppingCart, Trash2 } from 'lucide-react';
+import CustomerForm, { CustomerInfo } from './CustomerForm';
+import { useState } from 'react';
 
 export interface CartItem {
     id: string;
@@ -14,10 +16,13 @@ interface CartSidebarProps {
     items: CartItem[];
     onUpdateQuantity: (id: string, quantity: number) => void;
     onRemoveItem: (id: string) => void;
-    onCheckout: () => void;
+    onCheckout: (customerInfo: CustomerInfo) => void;
 }
 
 export default function CartSidebar({ items, onUpdateQuantity, onRemoveItem, onCheckout }: CartSidebarProps) {
+    const [customerInfo, setCustomerInfo] = useState<CustomerInfo | null>(null);
+    const [isFormValid, setIsFormValid] = useState(false);
+
     const total = items.reduce((sum, item) => sum + item.price * item.quantity, 0);
 
     const formatPrice = (price: number) => {
@@ -34,6 +39,19 @@ export default function CartSidebar({ items, onUpdateQuantity, onRemoveItem, onC
         } else {
             onUpdateQuantity(id, newQuantity);
         }
+    };
+
+    const handleValidationChange = (isValid: boolean, data: CustomerInfo | null) => {
+        setIsFormValid(isValid);
+        setCustomerInfo(data);
+    };
+
+    const handleCheckoutClick = () => {
+        if (!isFormValid || !customerInfo) {
+            alert('Por favor, completá todos los datos obligatorios antes de continuar');
+            return;
+        }
+        onCheckout(customerInfo);
     };
 
     return (
@@ -102,7 +120,15 @@ export default function CartSidebar({ items, onUpdateQuantity, onRemoveItem, onC
                         </div>
                     </div>
 
-                    <button onClick={onCheckout} className="w-full bg-chelsea-cucumber-600 hover:bg-chelsea-cucumber-700 text-white font-bold py-3 px-6 rounded-lg transition-colors transform hover:scale-105 active:scale-95">
+                    <CustomerForm onValidationChange={handleValidationChange} />
+
+                    <button
+                        onClick={handleCheckoutClick}
+                        disabled={!isFormValid}
+                        className={`w-full font-bold py-3 px-6 rounded-lg transition-colors transform hover:scale-105 active:scale-95 ${
+                            isFormValid ? 'bg-chelsea-cucumber-600 hover:bg-chelsea-cucumber-700 text-white cursor-pointer' : 'bg-gray-400 cursor-not-allowed text-gray-200'
+                        }`}
+                    >
                         Ir a Pagar
                     </button>
                 </>
