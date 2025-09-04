@@ -1,9 +1,10 @@
 import { redirect } from 'next/navigation';
 import { ArrowRight } from 'lucide-react';
-import MercadoPagoConfig from 'mercadopago';
+import Link from 'next/link';
 import { MercadoPagoService } from '@/app/services/mercado-pago';
 
 interface OfferCardProps {
+    id: string;
     title: string;
     description?: string;
     price: number;
@@ -18,7 +19,7 @@ interface VariantStyles {
     button: string;
 }
 
-export default function OfferCard({ title, description, price, variant = 'primary', mutedText, icon = '🎫' }: OfferCardProps) {
+export default function OfferCard({ id, title, description, price, variant = 'primary', mutedText, icon = '🎫' }: OfferCardProps) {
     // Definir colores según el variant
     const getVariantStyles = (variant: string): VariantStyles => {
         const styles = {
@@ -70,8 +71,8 @@ export default function OfferCard({ title, description, price, variant = 'primar
     };
 
     return (
-        <div className={`rounded-xl p-6 border border-chelsea-cucumber-600  shadow-lg hover:shadow-xl bg-chelsea-cucumber-500`}>
-            <div className="text-center">
+        <div className={`rounded-xl p-6 border border-chelsea-cucumber-600 max-w-none lg:max-w-[300px]  shadow-lg hover:shadow-xl bg-chelsea-cucumber-500`}>
+            <div className="flex flex-col items-center text-center h-full">
                 {/* Icon */}
                 <div className="text-4xl mb-4">{icon}</div>
 
@@ -86,14 +87,14 @@ export default function OfferCard({ title, description, price, variant = 'primar
 
                 {/* Botón de compra */}
 
-                <form action={handlePayment}>
+                <Link href={`/compra/${id}`} className="mt-auto">
                     <button
-                        type="submit"
-                        className={`w-full ${variantStyles.button}  font-bold py-2 px-6 rounded-full transition-colors duration-200 transform hover:scale-101 active:scale-95 cursor-pointer flex flex-row justify-between items-center`}
+                        type="button"
+                        className={`${variantStyles.button} font-bold py-2 px-6 rounded-full transition-colors duration-200 transform hover:scale-101 active:scale-95 cursor-pointer flex flex-row justify-between items-center`}
                     >
-                        <span>Ir a comprar</span> <ArrowRight className="h-4 w-4" />
+                        <span className="mr-3">Ir a comprar</span> <ArrowRight className="h-4 w-4" />
                     </button>
-                </form>
+                </Link>
 
                 {/* Texto aclaratorio (opcional) */}
                 {mutedText && <p className="text-neutral-50 text-xs mt-3 italic">{mutedText}</p>}
