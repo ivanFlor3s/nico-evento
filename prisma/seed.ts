@@ -23,19 +23,12 @@ async function main() {
         data: {
             name: 'Entrada General',
             category: 'entrada',
-            price: 2500,
+            price: 1000,
             available: true
         }
     });
 
-    const entradaVIP = await prisma.product.create({
-        data: {
-            name: 'Entrada VIP',
-            category: 'entrada',
-            price: 4000,
-            available: true
-        }
-    });
+
 
     // Comidas
     const paty = await prisma.product.create({
@@ -93,49 +86,18 @@ async function main() {
         }
     });
 
-    const agua = await prisma.product.create({
-        data: {
-            name: 'Agua',
-            category: 'bebida',
-            price: 300,
-            available: true
-        }
-    });
-
     console.log('✅ Productos creados exitosamente');
 
     // Crear combos
     console.log('🎁 Creando combos...');
 
-    // Combo Entrada General (nuevo)
-    const comboEntradaGeneral = await prisma.combo.create({
-        data: {
-            name: 'Entrada General + Bebida',
-            price: 2800, // Descuento de $100
-            available: true,
-        }
-    });
-
-    await prisma.comboItem.createMany({
-        data: [
-            {
-                comboId: comboEntradaGeneral.id,
-                productId: entradaGeneral.id,
-                quantity: 1
-            },
-            {
-                comboId: comboEntradaGeneral.id,
-                productId: gaseosa.id,
-                quantity: 1
-            }
-        ]
-    });
 
     // Combo Familiar: 4 comidas + 4 bebidas
     const comboFamiliar = await prisma.combo.create({
         data: {
             name: 'Combo Familiar',
             price: 7200, // Descuento del 20% sobre precio individual
+            description: '4 comidas completas + 4 bebidas',
             available: true,
         }
     });
@@ -161,6 +123,7 @@ async function main() {
             name: 'Combo Pareja',
             price: 3600, // Descuento del 15% sobre precio individual
             available: true,
+            description: '2 comidas + 2 bebidas',
         }
     });
 
@@ -301,55 +264,6 @@ async function main() {
 
     console.log('✅ Combos creados exitosamente');
 
-    // Crear Landing Offers
-    console.log('🌟 Creando Landing Offers...');
-
-    // Landing Offer para Combo Entrada General
-    await prisma.landingOffer.create({
-        data: {
-            name: 'Oferta Especial Entrada',
-            description: 'Entrada general + bebida con descuento. ¡Perfecta para empezar la noche!',
-            price: comboEntradaGeneral.price,
-            icon: '🎫',
-            comboId: comboEntradaGeneral.id
-        }
-    });
-
-    // Landing Offer para Combo Familiar (solo si quieres mostrarlo en landing)
-    const comboFamiliarOffer = await prisma.combo.findFirst({
-        where: { name: 'Combo Familiar' }
-    });
-
-    if (comboFamiliarOffer) {
-        await prisma.landingOffer.create({
-            data: {
-                name: 'Pack Familiar Completo',
-                description: '4 comidas completas + 4 bebidas. Ideal para disfrutar en familia de una noche increíble.',
-                price: comboFamiliarOffer.price,
-                icon: '👨‍👩‍👧‍👦',
-                comboId: comboFamiliarOffer.id
-            }
-        });
-    }
-
-    // Landing Offer para Combo Pareja
-    const comboParejaOffer = await prisma.combo.findFirst({
-        where: { name: 'Combo Pareja' }
-    });
-
-    if (comboParejaOffer) {
-        await prisma.landingOffer.create({
-            data: {
-                name: 'Noche Romántica',
-                description: '2 comidas + 2 bebidas para una velada perfecta. Música, comida y buena compañía.',
-                price: comboParejaOffer.price,
-                icon: '💑',
-                comboId: comboParejaOffer.id
-            }
-        });
-    }
-
-    console.log('✅ Landing Offers creados exitosamente');
 
     // Mostrar resumen
     const productCount = await prisma.product.count();

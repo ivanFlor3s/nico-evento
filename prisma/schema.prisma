@@ -39,11 +39,12 @@ model LandingOffer {
 }
 
 model Combo {
-  id        String   @id @default(uuid())
-  name      String
-  price     Float
-  available Boolean  @default(true)
-  createdAt DateTime @default(now())
+  id          String   @id @default(uuid())
+  name        String
+  description String?
+  price       Float
+  available   Boolean  @default(true)
+  createdAt   DateTime @default(now())
 
   comboItems   ComboItem[]
   orderItems   OrderItem[]
