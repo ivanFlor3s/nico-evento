@@ -61,11 +61,17 @@ model ComboItem {
 }
 
 model Order {
-  id         String   @id @default(uuid())
-  buyerEmail String?
-  total      Float
-  status     String   @default("pending") // pending | paid | cancelled
-  createdAt  DateTime @default(now())
+  id            String   @id @default(uuid())
+  buyerEmail    String
+  buyerName     String
+  buyerLastName String
+  payMethod     String // "mercadopago" | "cash"
+  total         Float
+  status        String   @default("pending") // pending | paid | cancelled
+  paymentId     String? // ID del pago en MercadoPago
+  preferenceId  String? // ID de la preferencia de MercadoPago
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
 
   orderItems OrderItem[]
 }
