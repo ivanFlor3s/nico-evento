@@ -30,7 +30,7 @@ const generateEmailHTML = (firstName: string, lastName: string, cartItems: CartI
             <!-- Header -->
             <div style="background-color: #059669; color: white; padding: 24px; border-radius: 8px 8px 0 0; text-align: center;">
                 <h1 style="margin: 0; font-size: 24px;">¡Confirmación de Compra! 🎉</h1>
-                <p style="margin: 8px 0 0 0; opacity: 0.9;">Peña Iglesia - Orden #${orderId}</p>
+                <p style="margin: 8px 0 0 0; opacity: 0.9;">Peña Iglesia - Orden #${simplifyOrderId(orderId)}</p>
             </div>
 
             <!-- Content -->
@@ -140,11 +140,10 @@ const generateCashPaymentEmailHTML = (firstName: string, lastName: string, cartI
                 <!-- Instrucciones de Pago -->
                 <div style="background-color: #fef2f2; border: 1px solid #ef4444; border-radius: 6px; padding: 16px; margin-top: 24px;">
                     <h4 style="margin: 0 0 8px 0; color: #dc2626;">
-                        🚨 IMPORTANTE - Instrucciones de Pago
+                        Instrucciones de Pago
                     </h4>
                     <div style="margin: 0; color: #374151; font-size: 14px; line-height: 1.6;">
                         <p style="margin: 0 0 8px 0;"><strong>• Debes pagar en efectivo el día del evento</strong></p>
-                        <p style="margin: 0 0 8px 0;"><strong>• Tu reserva está confirmada por 48 horas</strong></p>
                         <p style="margin: 0 0 8px 0;"><strong>• Presenta este email en la entrada</strong></p>
                         <p style="margin: 0;"><strong>• Total a abonar: $${total.toLocaleString('es-AR')}</strong></p>
                     </div>
@@ -167,7 +166,6 @@ const generateCashPaymentEmailHTML = (firstName: string, lastName: string, cartI
                 <div style="text-align: center; margin-top: 32px; padding-top: 16px; border-top: 1px solid #e5e7eb;">
                     <p style="color: #6b7280; font-size: 14px; margin: 0;">
                         ¡Te esperamos en la peña! 🎵<br />
-                        <strong>No olvides traer el dinero exacto: $${total.toLocaleString('es-AR')}</strong><br />
                         Si tienes alguna pregunta, no dudes en contactarnos.
                     </p>
                 </div>
@@ -183,7 +181,7 @@ export const sendEmail = async (to: string, orderId: string, buyerFirstName: str
         const result = await resend.emails.send({
             from: `${process.env.SMTP_FROM_NAME} <${process.env.SMTP_FROM_EMAIL || 'onboarding@resend.dev'}>` as string,
             to,
-            subject: `Confirmación de compra - Orden #${orderId}`,
+            subject: `Confirmación de compra - Orden #${simplifyOrderId(orderId)}`,
             html: emailHTML,
         });
 
