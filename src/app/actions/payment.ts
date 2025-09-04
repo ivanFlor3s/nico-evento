@@ -177,3 +177,63 @@ const createOrderInDb = async (cartItems: CartItem[], customerInfo: CustomerInfo
         };
     }
 }
+
+export const createCashPayment = async (cartItems: CartItem[], customerInfo: CustomerInfo) => {
+    try {
+        console.log('💵 Iniciando proceso de pago en efectivo...');
+        console.log('👤 Datos del comprador:', customerInfo);
+
+        // Calcular el total
+        const total = cartItems.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+
+        // Crear la orden en la base de datos con estado pending
+        const orderResult = await createOrderInDb(
+            cartItems,
+            customerInfo,
+            'cash', // método de pago en efectivo
+            total,
+            undefined, // sin paymentId para efectivo
+            undefined  // sin preferenceId para efectivo
+        );
+
+        if (!orderResult.success) {
+            return {
+                success: false,
+                error: `Error creando orden en BD: ${orderResult.error}`
+            };
+        }
+
+        console.log('✅ Orden de efectivo creada exitosamente:', orderResult.orderId);
+
+        // Enviar email de confirmación para pago en efectivo
+        try {
+            const { sendCashPaymentEmail } = await import('@/app/services/email-sender');
+            await sendCashPaymentEmail(
+                customerInfo.email,
+                orderResult.orderId as string,
+                customerInfo.firstName,
+                customerInfo.lastName,
+                cartItems
+            );
+            console.log('📧 Email de confirmación de efectivo enviado');
+        } catch (emailError) {
+            console.error('⚠️ Error enviando email de efectivo:', emailError);
+            // No fallar el proceso si no se puede enviar el email
+        }
+
+        return {
+            success: true,
+            orderId: orderResult.orderId,
+            order: orderResult.order,
+            paymentMethod: 'cash'
+        };
+
+    } catch (error) {
+        console.error('❌ Error en createCashPayment:', error);
+
+        return {
+            success: false,
+            error: error instanceof Error ? error.message : 'Error desconocido en el proceso de pago en efectivo'
+        };
+    }
+}

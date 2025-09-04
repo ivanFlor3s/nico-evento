@@ -89,13 +89,47 @@ const CompraClient: React.FC<CompraClientProps> = ({ combos, initialOfferName, i
         }
     };
 
+    const handleCashPayment = async (customerInfo: CustomerInfo) => {
+        if (cartItems.length === 0) {
+            alert('Tu carrito está vacío');
+            return;
+        }
+
+        try {
+            console.log('💵 Iniciando proceso de pago en efectivo...');
+
+            // Importar dinámicamente la Server Action para efectivo
+            const { createCashPayment } = await import('@/app/actions/payment');
+
+            // Crear orden para pago en efectivo
+            const result = await createCashPayment(cartItems, customerInfo);
+
+            if (result.success) {
+                console.log('✅ Reserva de efectivo creada exitosamente:', result.orderId);
+
+                // Redirigir a la página de confirmación de efectivo con parámetros
+                const searchParams = new URLSearchParams({
+                    orderId: result.orderId as string,
+                    email: customerInfo.email,
+                });
+                window.location.href = `/payment/cash-success?${searchParams.toString()}`;
+            } else {
+                console.error('❌ Error en el pago en efectivo:', result.error);
+                alert(`Error al procesar tu reserva: ${result.error}`);
+            }
+        } catch (error) {
+            console.error('❌ Error en pago en efectivo:', error);
+            alert('Hubo un error al procesar tu reserva. Por favor, intentá de nuevo.');
+        }
+    };
+
     return (
         <div className="min-h-screen bg-gray-50 p-6">
             <div className="max-w-7xl mx-auto">
                 <div className="flex flex-col md:flex-row gap-8">
                     <ComboList combos={combos} onComboSelect={handleComboSelect} />
 
-                    <CartSidebar items={cartItems} onUpdateQuantity={handleUpdateQuantity} onRemoveItem={handleRemoveItem} onCheckout={handleCheckout} />
+                    <CartSidebar items={cartItems} onUpdateQuantity={handleUpdateQuantity} onRemoveItem={handleRemoveItem} onCheckout={handleCheckout} onCashPayment={handleCashPayment} />
                 </div>
             </div>
         </div>

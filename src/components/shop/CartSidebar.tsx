@@ -17,9 +17,10 @@ interface CartSidebarProps {
     onUpdateQuantity: (id: string, quantity: number) => void;
     onRemoveItem: (id: string) => void;
     onCheckout: (customerInfo: CustomerInfo) => void;
+    onCashPayment: (customerInfo: CustomerInfo) => void;
 }
 
-export default function CartSidebar({ items, onUpdateQuantity, onRemoveItem, onCheckout }: CartSidebarProps) {
+export default function CartSidebar({ items, onUpdateQuantity, onRemoveItem, onCheckout, onCashPayment }: CartSidebarProps) {
     const [customerInfo, setCustomerInfo] = useState<CustomerInfo | null>(null);
     const [isFormValid, setIsFormValid] = useState(false);
 
@@ -52,6 +53,14 @@ export default function CartSidebar({ items, onUpdateQuantity, onRemoveItem, onC
             return;
         }
         onCheckout(customerInfo);
+    };
+
+    const handleCashPaymentClick = () => {
+        if (!isFormValid || !customerInfo) {
+            alert('Por favor, completá todos los datos obligatorios antes de continuar');
+            return;
+        }
+        onCashPayment(customerInfo);
     };
 
     return (
@@ -122,15 +131,37 @@ export default function CartSidebar({ items, onUpdateQuantity, onRemoveItem, onC
 
                     <CustomerForm onValidationChange={handleValidationChange} />
 
-                    <button
-                        onClick={handleCheckoutClick}
-                        disabled={!isFormValid}
-                        className={`w-full font-bold py-3 px-6 rounded-lg transition-colors transform hover:scale-105 active:scale-95 ${
-                            isFormValid ? 'bg-chelsea-cucumber-600 hover:bg-chelsea-cucumber-700 text-white cursor-pointer' : 'bg-gray-400 cursor-not-allowed text-gray-200'
-                        }`}
-                    >
-                        Ir a Pagar
-                    </button>
+                    <div className="space-y-3">
+                        {/* Botón Pago Online */}
+                        <button
+                            onClick={handleCheckoutClick}
+                            disabled={!isFormValid}
+                            className={`w-full font-bold py-3 px-6 rounded-lg transition-colors transform hover:scale-105 active:scale-95 ${
+                                isFormValid ? 'bg-chelsea-cucumber-600 hover:bg-chelsea-cucumber-700 text-white cursor-pointer' : 'bg-gray-400 cursor-not-allowed text-gray-200'
+                            }`}
+                        >
+                            MercadoPago
+                        </button>
+
+                        {/* Divisor */}
+                        <div className="flex items-center gap-3">
+                            <div className="flex-1 h-px bg-gray-300"></div>
+                            <span className="text-xs text-gray-500 font-medium">O</span>
+                            <div className="flex-1 h-px bg-gray-300"></div>
+                        </div>
+
+                        {/* Botón Pago en Efectivo */}
+                        <button
+                            onClick={handleCashPaymentClick}
+                            disabled={!isFormValid}
+                            className={`w-full font-bold py-3 px-6 rounded-lg transition-colors transform hover:scale-105 active:scale-95 border-2 ${
+                                isFormValid ? 'border-chelsea-cucumber-600 text-chelsea-cucumber-600 hover:bg-chelsea-cucumber-600 hover:text-white cursor-pointer' : 'border-gray-400 text-gray-400 cursor-not-allowed'
+                            }`}
+                        >
+                            Efectivo
+                        </button>
+                        <div className="text-xs text-gray-500 font-medium">Al seleccionar esta opción, recibirás un email con los detalles de tu reserva</div>
+                    </div>
                 </>
             )}
         </div>
