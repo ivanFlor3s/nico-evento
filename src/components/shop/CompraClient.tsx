@@ -60,15 +60,34 @@ const CompraClient: React.FC<CompraClientProps> = ({ combos, initialOfferName, i
         removeFromCart(id);
     };
 
-    const handleCheckout = () => {
+    const handleCheckout = async () => {
         if (cartItems.length === 0) {
             alert('Tu carrito está vacío');
             return;
         }
 
-        // Aquí puedes redirigir al checkout o mostrar un modal
-        console.log('Procediendo al checkout con items:', cartItems);
-        alert(`Procediendo al pago con ${cartItems.length} items`);
+        try {
+            console.log('🛒 Iniciando proceso de pago...');
+
+            // Importar dinámicamente la Server Action
+            const { createPaymentPreference } = await import('@/app/actions/payment');
+
+            // Crear la preferencia de pago
+            const result = await createPaymentPreference(cartItems);
+
+            if (result.success && result.initPoint) {
+                console.log('✅ Preferencia creada, redirigiendo a MercadoPago...');
+
+                // Redirigir a MercadoPago
+                window.location.href = result.initPoint;
+            } else {
+                console.error('❌ Error creando preferencia:', result.error);
+                alert(`Error al procesar el pago: ${result.error}`);
+            }
+        } catch (error) {
+            console.error('❌ Error en checkout:', error);
+            alert('Hubo un error al procesar tu compra. Por favor, intentá de nuevo.');
+        }
     };
 
     return (
