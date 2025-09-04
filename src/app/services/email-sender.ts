@@ -60,14 +60,16 @@ const generateEmailHTML = (firstName: string, lastName: string, cartItems: CartI
 
                 <!-- Info adicional -->
                 <div style="background-color: #eff6ff; border: 1px solid #3b82f6; border-radius: 6px; padding: 16px; margin-top: 24px;">
-                    <h4 style="margin: 0 0 8px 0; color: #1e40af;">
+                    <h4 style="margin: 0 0 12px 0; color: #1e40af; font-size: 16px;">
                         📅 Información del Evento
                     </h4>
-                    <p style="margin: 0; color: #374151; font-size: 14px;">
-                        <strong>Fecha:</strong> [FECHA DEL EVENTO]<br />
-                        <strong>Lugar:</strong> [DIRECCIÓN]<br />
-                        <strong>Horario:</strong> [HORA DE INICIO]
-                    </p>
+                    <div style="margin: 0; color: #374151; font-size: 14px; line-height: 1.8;">
+                        <p style="margin: 0 0 8px 0;"><strong>📅 Fecha:</strong> Sábado, 14 de Diciembre de 2024</p>
+                        <p style="margin: 0 0 8px 0;"><strong>🕕 Horario:</strong> Desde las 18:00 hasta la medianoche</p>
+                        <p style="margin: 0 0 8px 0;"><strong>🏛️ Lugar:</strong> Parroquia Santa Lucía Virgen y Mártir</p>
+                        <p style="margin: 0 0 8px 0;"><strong>📍 Dirección:</strong> Av. Montes de Oca 550, Barracas, CABA</p>
+                        <p style="margin: 0;"><strong>🚇 Transporte:</strong> Metro - Estación San Juan (Línea C)</p>
+                    </div>
                 </div>
 
                 <!-- Footer -->
@@ -151,15 +153,17 @@ const generateCashPaymentEmailHTML = (firstName: string, lastName: string, cartI
 
                 <!-- Info del Evento -->
                 <div style="background-color: #eff6ff; border: 1px solid #3b82f6; border-radius: 6px; padding: 16px; margin-top: 24px;">
-                    <h4 style="margin: 0 0 8px 0; color: #1e40af;">
+                    <h4 style="margin: 0 0 12px 0; color: #1e40af; font-size: 16px;">
                         📅 Información del Evento
                     </h4>
-                    <p style="margin: 0; color: #374151; font-size: 14px;">
-                        <strong>Fecha:</strong> [FECHA DEL EVENTO]<br />
-                        <strong>Lugar:</strong> [DIRECCIÓN]<br />
-                        <strong>Horario:</strong> [HORA DE INICIO]<br />
-                        <strong>🎫 Tu código de reserva:</strong> #${simplifyOrderId(orderId)}
-                    </p>
+                    <div style="margin: 0; color: #374151; font-size: 14px; line-height: 1.8;">
+                        <p style="margin: 0 0 8px 0;"><strong>📅 Fecha:</strong> Sábado, 14 de Diciembre de 2024</p>
+                        <p style="margin: 0 0 8px 0;"><strong>🕕 Horario:</strong> Desde las 18:00 hasta la medianoche</p>
+                        <p style="margin: 0 0 8px 0;"><strong>🏛️ Lugar:</strong> Parroquia Santa Lucía Virgen y Mártir</p>
+                        <p style="margin: 0 0 8px 0;"><strong>📍 Dirección:</strong> Av. Montes de Oca 550, Barracas, CABA</p>
+                        <p style="margin: 0 0 8px 0;"><strong>🚇 Transporte:</strong> Metro - Estación San Juan (Línea C)</p>
+                        <p style="margin: 0;"><strong>🎫 Tu código de reserva:</strong> #${simplifyOrderId(orderId)}</p>
+                    </div>
                 </div>
 
                 <!-- Footer -->

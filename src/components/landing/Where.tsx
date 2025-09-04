@@ -1,98 +1,97 @@
 export const Where: React.FC = () => {
     return (
-        <section id="where" className="min-h-screen py-20 bg-amber-100">
-            <div className="max-w-6xl mx-auto px-6 text-chelsea-cucumber-800 ">
-                <h2 className="text-4xl font-bold text-center mb-4    ">🗺️ Dónde Será</h2>
-                <p className="text-center  mb-12 text-lg">Acompáñanos en una noche inolvidable en un lugar especial</p>
-            </div>
-
-            <div className="flex flex-col items-center md:items-start gap-y-3 md:gap-y-0 md:flex-row md:justify-evenly">
-                <div className="max-w-[350px] flex flex-col gap-y-3 text-chelsea-cucumber-800">
-                    <p className="flex items-center gap-2 text-lg">
-                        <svg
-                            width="24"
-                            height="24"
-                            viewBox="0 0 24 24"
-                            fill="none"
-                            stroke="currentColor"
-                            strokeWidth="2"
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                            className="lucide lucide-bus-front-icon lucide-bus-front text-chelsea-cucumber-700"
-                        >
-                            <path d="M4 6 2 7" />
-                            <path d="M10 6h4" />
-                            <path d="m22 7-2-1" />
-                            <rect width="16" height="16" x="4" y="3" rx="2" />
-                            <path d="M4 11h16" />
-                            <path d="M8 15h.01" />
-                            <path d="M16 15h.01" />
-                            <path d="M6 19v2" />
-                            <path d="M18 21v-2" />
-                        </svg>
-                        118, 37, 79, 45
-                    </p>
-
-                    <p className="flex items-center gap-2 text-lg">
-                        <svg
-                            width="24"
-                            height="24"
-                            viewBox="0 0 24 24"
-                            fill="none"
-                            stroke="currentColor"
-                            strokeWidth="2"
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                            className="lucide lucide-tram-front-icon lucide-tram-front text-chelsea-cucumber-700"
-                        >
-                            <rect width="16" height="16" x="4" y="3" rx="2" />
-                            <path d="M4 11h16" />
-                            <path d="M12 3v8" />
-                            <path d="m8 19-2 3" />
-                            <path d="m18 22-2-3" />
-                            <path d="M8 15h.01" />
-                            <path d="M16 15h.01" />
-                        </svg>
-                        Roca, Belgrano Sur
-                    </p>
-                    <p className="flex items-center gap-2 text-lg">
-                        <svg
-                            width="24"
-                            height="24"
-                            viewBox="0 0 24 24"
-                            fill="none"
-                            stroke="currentColor"
-                            strokeWidth="2"
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                            className="lucide lucide-train-front-tunnel-icon lucide-train-front-tunnel text-chelsea-cucumber-700"
-                        >
-                            <path d="M2 22V12a10 10 0 1 1 20 0v10" />
-                            <path d="M15 6.8v1.4a3 2.8 0 1 1-6 0V6.8" />
-                            <path d="M10 15h.01" />
-                            <path d="M14 15h.01" />
-                            <path d="M10 19a4 4 0 0 1-4-4v-3a6 6 0 1 1 12 0v3a4 4 0 0 1-4 4Z" />
-                            <path d="m9 19-2 3" />
-                            <path d="m15 19 2 3" />
-                        </svg>
-                        Linea C, Linea H
-                    </p>
+        <section id="where" className="min-h-screen py-20 bg-gradient-to-b from-amber-50 to-amber-100">
+            <div className="max-w-7xl mx-auto px-6">
+                {/* Título principal */}
+                <div className="text-center mb-16">
+                    <h2 className="text-5xl font-bold text-chelsea-cucumber-800 mb-4">📍 ¿Cuándo y Dónde?</h2>
+                    <p className="text-xl text-chelsea-cucumber-600 max-w-2xl mx-auto">Te esperamos en una noche especial llena de música, comida y buena compañía</p>
                 </div>
 
-                <div className=" hidden xl:block md:w-1/2 pr-2">
-                    <iframe
-                        src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d26261.465635598062!2d-58.38237764223632!3d-34.63744512725652!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x95bccb3590725cc7%3A0x97232f25ce880b11!2sParroquia%20Santa%20Luc%C3%ADa%20Virgen%20y%20M%C3%A1rtir!5e0!3m2!1ses-419!2sar!4v1756751955786!5m2!1ses-419!2sar"
-                        height="450"
-                        width={700}
-                        loading="lazy"
-                    ></iframe>
-                </div>
-                <div className=" xl:hidden pr-2">
-                    <iframe
-                        src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d26261.465635598062!2d-58.38237764223632!3d-34.63744512725652!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x95bccb3590725cc7%3A0x97232f25ce880b11!2sParroquia%20Santa%20Luc%C3%ADa%20Virgen%20y%20M%C3%A1rtir!5e0!3m2!1ses-419!2sar!4v1756751955786!5m2!1ses-419!2sar"
-                        height="450"
-                        loading="lazy"
-                    ></iframe>
+                {/* Grid principal */}
+                <div className="grid lg:grid-cols-2 gap-12 items-start">
+                    {/* Información del evento */}
+                    <div className="space-y-8">
+                        {/* Fecha y hora */}
+                        <div className="bg-white rounded-3xl p-8 shadow-xl border-4 border-chelsea-cucumber-200">
+                            <div className="flex items-center gap-4 mb-6">
+                                <div className="w-16 h-16 bg-chelsea-cucumber-600 rounded-full flex items-center justify-center text-3xl">📅</div>
+                                <div>
+                                    <h3 className="text-2xl font-bold text-chelsea-cucumber-800">Fecha del Evento</h3>
+                                    <p className="text-chelsea-cucumber-600">¡Marca tu calendario!</p>
+                                </div>
+                            </div>
+
+                            <div className="space-y-4">
+                                <div className="flex items-center gap-3">
+                                    <span className="w-2 h-2 bg-chelsea-cucumber-500 rounded-full"></span>
+                                    <span className="text-xl font-semibold text-gray-800">Sábado, 14 de Diciembre de 2024</span>
+                                </div>
+                                <div className="flex items-center gap-3">
+                                    <span className="w-2 h-2 bg-chelsea-cucumber-500 rounded-full"></span>
+                                    <span className="text-lg text-gray-700">Desde las 18:00 hasta la medianoche</span>
+                                </div>
+                                <div className="flex items-center gap-3">
+                                    <span className="w-2 h-2 bg-chelsea-cucumber-500 rounded-full"></span>
+                                    <span className="text-lg text-gray-700">6 horas de diversión garantizada</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        {/* Ubicación */}
+                        <div className="bg-white rounded-3xl p-8 shadow-xl border-4 border-amber-200">
+                            <div className="flex items-center gap-4 mb-6">
+                                <div className="w-16 h-16 bg-amber-500 rounded-full flex items-center justify-center text-3xl">🏛️</div>
+                                <div>
+                                    <h3 className="text-2xl font-bold text-gray-800">Ubicación</h3>
+                                    <p className="text-gray-600">Un lugar con historia</p>
+                                </div>
+                            </div>
+
+                            <div className="space-y-3">
+                                <h4 className="text-xl font-bold text-gray-800">Parroquia Santa Lucía Virgen y Mártir</h4>
+                                <p className="text-gray-700">📍 Av. Montes de Oca 550, Barracas, CABA</p>
+                                <div className="pt-4">
+                                    <div className="inline-flex items-center gap-2 bg-green-100 text-green-800 px-4 py-2 rounded-full text-sm font-medium">🚇 Metro: Estación San Juan (Línea C)</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    {/* Mapa */}
+                    <div className="lg:sticky lg:top-8">
+                        <div className="bg-white rounded-3xl p-4 shadow-xl border-4 border-gray-200">
+                            <div className="mb-4 text-center">
+                                <h3 className="text-xl font-bold text-gray-800 mb-2">🗺️ Cómo llegar</h3>
+                                <p className="text-gray-600 text-sm">Toca el mapa para ver las direcciones</p>
+                            </div>
+
+                            <div className="rounded-2xl overflow-hidden shadow-lg">
+                                <iframe
+                                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3282.793339714617!2d-58.37529669780507!3d-34.63466239650655!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x95bccb3590725cc7%3A0x97232f25ce880b11!2sParroquia%20Santa%20Luc%C3%ADa%20Virgen%20y%20M%C3%A1rtir!5e0!3m2!1ses-419!2sar!4v1757019858036!5m2!1ses-419!2sar"
+                                    width="100%"
+                                    height="400"
+                                    style={{ border: 0 }}
+                                    allowFullScreen
+                                    loading="lazy"
+                                    referrerPolicy="no-referrer-when-downgrade"
+                                    className="w-full"
+                                ></iframe>
+                            </div>
+
+                            {/* Información adicional del mapa */}
+                            <div className="mt-4 grid grid-cols-2 gap-4 text-center">
+                                <div className="bg-blue-50 rounded-lg p-3">
+                                    <div className="text-2xl mb-1">🚗</div>
+                                    <div className="text-xs text-gray-600">Estacionamiento disponible</div>
+                                </div>
+                                <div className="bg-green-50 rounded-lg p-3">
+                                    <div className="text-2xl mb-1">🚇</div>
+                                    <div className="text-xs text-gray-600">Acceso por transporte público</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>

@@ -12,14 +12,14 @@ const Hero: React.FC = () => {
                     </p>
                 </div>
             </div>
-            <div id="hero-buttons" className="mt-8">
-                <Link href="/comprar" className="bg-amber-200 text-chelsea-cucumber-700 font-bold py-4 px-8 rounded-lg text-xl mx-2 hover:bg-amber-300 transition-colors">
+            <div id="hero-buttons" className="mt-8 flex flex-col md:flex-row gap-4">
+                <Link href="/comprar" className=" text-center  bg-amber-200 text-chelsea-cucumber-700 font-bold py-4 px-8 rounded-lg text-xl mx-2 hover:bg-amber-300 transition-colors">
                     Comprar entradas
                 </Link>
                 <a
                     href="https://www.instagram.com/santalucia.barracas/?hl=es"
                     target="_blank"
-                    className="bg-transparent border-2 border-amber-200 text-amber-200 font-bold py-4 px-8 rounded-lg text-xl mx-2 hover:bg-amber-200 hover:text-chelsea-cucumber-700 transition-colors"
+                    className=" text-center bg-transparent border-2 border-amber-200 text-amber-200 font-bold py-4 px-8 rounded-lg text-xl mx-2 hover:bg-amber-200 hover:text-chelsea-cucumber-700 transition-colors"
                 >
                     Contacto
                 </a>
