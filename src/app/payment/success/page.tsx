@@ -1,20 +1,8 @@
 'use client';
 
-import { CheckCircle, Home, Share2 } from 'lucide-react';
-import Link from 'next/link';
+import { CheckCircle } from 'lucide-react';
 
 export default function PaymentSuccess() {
-    const handleShare = () => {
-        // Lógica para compartir
-        if (navigator.share) {
-            navigator.share({
-                title: 'Mi entrada para la Peña de la Iglesia',
-                text: '¡Ya tengo mi entrada para la Peña de la Iglesia 2025!',
-                url: window.location.origin,
-            });
-        }
-    };
-
     return (
         <>
             <div className="min-h-screen bg-green-300 flex items-center justify-center">

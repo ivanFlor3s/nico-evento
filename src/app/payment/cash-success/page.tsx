@@ -1,6 +1,6 @@
 import { Suspense } from 'react';
 import Link from 'next/link';
-import { CheckCircle, Mail, Calendar, MapPin, Clock } from 'lucide-react';
+import { CheckCircle } from 'lucide-react';
 import { simplifyOrderId } from '@/lib/order-id-format';
 
 interface CashSuccessContentProps {

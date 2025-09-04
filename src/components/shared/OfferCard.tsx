@@ -1,7 +1,5 @@
-import { redirect } from 'next/navigation';
 import { ArrowRight } from 'lucide-react';
 import Link from 'next/link';
-import { MercadoPagoService } from '@/app/services/mercado-pago';
 
 interface OfferCardProps {
     id: string;
@@ -50,13 +48,6 @@ export default function OfferCard({ id, title, description, price, variant = 'pr
             },
         };
         return styles[variant as keyof typeof styles] || styles.primary;
-    };
-
-    const handlePayment = async () => {
-        'use server';
-        const service = new MercadoPagoService();
-        const url = await service.createPreference();
-        if (url) redirect(url);
     };
 
     const variantStyles = getVariantStyles(variant);
