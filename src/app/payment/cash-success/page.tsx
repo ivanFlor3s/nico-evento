@@ -4,13 +4,11 @@ import { CheckCircle } from 'lucide-react';
 import { simplifyOrderId } from '@/lib/order-id-format';
 
 interface CashSuccessContentProps {
-    searchParams: { [key: string]: string | string[] | undefined };
+    orderId: string | null;
+    customerEmail: string | null;
 }
 
-function CashSuccessContent({ searchParams }: CashSuccessContentProps) {
-    const orderId = searchParams.orderId as string;
-    const customerEmail = searchParams.email as string;
-
+function CashSuccessContent({ orderId, customerEmail }: CashSuccessContentProps) {
     return (
         <div className="min-h-screen bg-gray-50 flex items-center justify-center p-4">
             <div className="max-w-2xl w-full">
@@ -80,7 +78,12 @@ function CashSuccessContent({ searchParams }: CashSuccessContentProps) {
     );
 }
 
-export default function CashSuccessPage({ searchParams }: { searchParams: { [key: string]: string | string[] | undefined } }) {
+export default async function CashSuccessPage({ searchParams }: { searchParams: Promise<{ [key: string]: string | string[] | undefined }> }) {
+    // Esperar a que se resuelvan los searchParams
+    const params = await searchParams;
+    const orderId = (params.orderId as string) || null;
+    const customerEmail = (params.email as string) || null;
+
     return (
         <Suspense
             fallback={
@@ -92,7 +95,7 @@ export default function CashSuccessPage({ searchParams }: { searchParams: { [key
                 </div>
             }
         >
-            <CashSuccessContent searchParams={searchParams} />
+            <CashSuccessContent orderId={orderId} customerEmail={customerEmail} />
         </Suspense>
     );
 }
