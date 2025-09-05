@@ -5,12 +5,19 @@ async function Offers() {
     'use cache';
 
     const data = await getLandingOffers();
-    console.log('OFFERS LANDING', data);
-    setTimeout(() => {}, 10000);
+    
     return (
-        <div className="mt-14  grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="mt-14 grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {data.map((offer) => (
-                <OfferCard id={offer.id} key={offer.id} title={offer.name} description={offer.description} price={offer.price} variant="primary" icon={offer.icon} />
+                <OfferCard 
+                    id={offer.id} 
+                    key={offer.id} 
+                    title={offer.name} 
+                    description={offer.description} 
+                    price={offer.price} 
+                    variant="primary" 
+                    icon={offer.icon} 
+                />
             ))}
         </div>
     );

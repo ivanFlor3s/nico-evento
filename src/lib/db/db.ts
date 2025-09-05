@@ -1,6 +1,7 @@
 import { prisma } from "./prisma"
 
-export const getLandingOffers = () => {
+export const getLandingOffers = async () => {
+    'use cache';
     return prisma.landingOffer.findMany({
         include: {
             combo: true
@@ -8,7 +9,8 @@ export const getLandingOffers = () => {
     })
 }
 
-export const getAllCombosForBuy = () => {
+export const getAllCombosForBuy = async () => {
+    'use cache';
     return prisma.combo.findMany({
         include: {
             comboItems: {
@@ -20,8 +22,8 @@ export const getAllCombosForBuy = () => {
     })
 }
 
-
-export const getProducts = () => {
+export const getProducts = async () => {
+    'use cache';
     return prisma.product.findMany()
 }
 
