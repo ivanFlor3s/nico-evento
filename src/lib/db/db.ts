@@ -18,13 +18,22 @@ export const getAllCombosForBuy = async () => {
                     product: true
                 }
             }
-        }
+        },
+        where: {
+            available: true
+        },
     })
 }
 
 export const getProducts = async () => {
     'use cache';
-    return prisma.product.findMany()
+    return prisma.product.findMany(
+        {
+            where: {
+                available: true
+            }
+        }
+    )
 }
 
 export const updateOrderStatus = (orderId: string, paymentId: number, status: 'pending' | 'approved' | 'rejected') => {
