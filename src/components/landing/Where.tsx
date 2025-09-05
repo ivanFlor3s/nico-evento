@@ -25,15 +25,15 @@ export const Where: React.FC = () => {
                             <div className="space-y-4">
                                 <div className="flex items-center gap-3">
                                     <span className="w-2 h-2 bg-chelsea-cucumber-500 rounded-full"></span>
-                                    <span className="text-xl font-semibold text-gray-800">Sábado, 14 de Diciembre de 2024</span>
+                                    <span className="text-xl font-semibold text-gray-800">Sábado 27 de Diciembre de 2024</span>
                                 </div>
                                 <div className="flex items-center gap-3">
                                     <span className="w-2 h-2 bg-chelsea-cucumber-500 rounded-full"></span>
-                                    <span className="text-lg text-gray-700">Desde las 18:00 hasta la medianoche</span>
+                                    <span className="text-lg text-gray-700">A partir de las 11:30 hs</span>
                                 </div>
                                 <div className="flex items-center gap-3">
                                     <span className="w-2 h-2 bg-chelsea-cucumber-500 rounded-full"></span>
-                                    <span className="text-lg text-gray-700">6 horas de diversión garantizada</span>
+                                    <span className="text-lg text-gray-700">Un día completo de diversión</span>
                                 </div>
                             </div>
                         </div>
@@ -49,10 +49,10 @@ export const Where: React.FC = () => {
                             </div>
 
                             <div className="space-y-3">
-                                <h4 className="text-xl font-bold text-gray-800">Parroquia Santa Lucía Virgen y Mártir</h4>
-                                <p className="text-gray-700">📍 Av. Montes de Oca 550, Barracas, CABA</p>
+                                <h4 className="text-xl font-bold text-gray-800">&ldquo;El Campito&rdquo;</h4>
+                                <p className="text-gray-700">📍 Herrera 554, CABA</p>
                                 <div className="pt-4">
-                                    <div className="inline-flex items-center gap-2 bg-green-100 text-green-800 px-4 py-2 rounded-full text-sm font-medium">🚇 Metro: Estación San Juan (Línea C)</div>
+                                    <div className="inline-flex items-center gap-2 bg-green-100 text-green-800 px-4 py-2 rounded-full text-sm font-medium">🏟️ Espacio al aire libre</div>
                                 </div>
                             </div>
                         </div>
@@ -81,10 +81,6 @@ export const Where: React.FC = () => {
 
                             {/* Información adicional del mapa */}
                             <div className="mt-4 grid grid-cols-2 gap-4 text-center">
-                                <div className="bg-blue-50 rounded-lg p-3">
-                                    <div className="text-2xl mb-1">🚗</div>
-                                    <div className="text-xs text-gray-600">Estacionamiento disponible</div>
-                                </div>
                                 <div className="bg-green-50 rounded-lg p-3">
                                     <div className="text-2xl mb-1">🚇</div>
                                     <div className="text-xs text-gray-600">Acceso por transporte público</div>

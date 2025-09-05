@@ -23,11 +23,15 @@ export default function PaymentSuccess() {
                             </div>
                             <div className="flex justify-between">
                                 <span>• Fecha del evento:</span>
-                                <span>Por confirmar</span>
+                                <span>Sábado, 27 de Diciembre de 2024</span>
+                            </div>
+                            <div className="flex justify-between">
+                                <span>• Horario:</span>
+                                <span>A partir de las 11:30 hs</span>
                             </div>
                             <div className="flex justify-between">
                                 <span>• Lugar:</span>
-                                <span>Salón de la Iglesia</span>
+                                <span>&ldquo;El Campito&rdquo; - Herrera 554</span>
                             </div>
                         </div>
                     </div>

@@ -64,11 +64,11 @@ const generateEmailHTML = (firstName: string, lastName: string, cartItems: CartI
                         📅 Información del Evento
                     </h4>
                     <div style="margin: 0; color: #374151; font-size: 14px; line-height: 1.8;">
-                        <p style="margin: 0 0 8px 0;"><strong>📅 Fecha:</strong> Sábado, 14 de Diciembre de 2024</p>
-                        <p style="margin: 0 0 8px 0;"><strong>🕕 Horario:</strong> Desde las 18:00 hasta la medianoche</p>
-                        <p style="margin: 0 0 8px 0;"><strong>🏛️ Lugar:</strong> Parroquia Santa Lucía Virgen y Mártir</p>
-                        <p style="margin: 0 0 8px 0;"><strong>📍 Dirección:</strong> Av. Montes de Oca 550, Barracas, CABA</p>
-                        <p style="margin: 0;"><strong>🚇 Transporte:</strong> Metro - Estación San Juan (Línea C)</p>
+                        <p style="margin: 0 0 8px 0;"><strong>📅 Fecha:</strong> Sábado, 27 de Diciembre de 2024</p>
+                        <p style="margin: 0 0 8px 0;"><strong>🕕 Horario:</strong> A partir de las 11:30 hs</p>
+                        <p style="margin: 0 0 8px 0;"><strong>🏛️ Lugar:</strong> "El Campito"</p>
+                        <p style="margin: 0 0 8px 0;"><strong>📍 Dirección:</strong> Herrera 554, CABA</p>
+                        <p style="margin: 0;"><strong>🌳 Ambiente:</strong> Espacio al aire libre</p>
                     </div>
                 </div>
 
@@ -157,11 +157,11 @@ const generateCashPaymentEmailHTML = (firstName: string, lastName: string, cartI
                         📅 Información del Evento
                     </h4>
                     <div style="margin: 0; color: #374151; font-size: 14px; line-height: 1.8;">
-                        <p style="margin: 0 0 8px 0;"><strong>📅 Fecha:</strong> Sábado, 14 de Diciembre de 2024</p>
-                        <p style="margin: 0 0 8px 0;"><strong>🕕 Horario:</strong> Desde las 18:00 hasta la medianoche</p>
-                        <p style="margin: 0 0 8px 0;"><strong>🏛️ Lugar:</strong> Parroquia Santa Lucía Virgen y Mártir</p>
-                        <p style="margin: 0 0 8px 0;"><strong>📍 Dirección:</strong> Av. Montes de Oca 550, Barracas, CABA</p>
-                        <p style="margin: 0 0 8px 0;"><strong>🚇 Transporte:</strong> Metro - Estación San Juan (Línea C)</p>
+                        <p style="margin: 0 0 8px 0;"><strong>📅 Fecha:</strong> Sábado, 27 de Diciembre de 2024</p>
+                        <p style="margin: 0 0 8px 0;"><strong>🕕 Horario:</strong> A partir de las 11:30 hs</p>
+                        <p style="margin: 0 0 8px 0;"><strong>🏛️ Lugar:</strong> "El Campito"</p>
+                        <p style="margin: 0 0 8px 0;"><strong>📍 Dirección:</strong> Herrera 554, CABA</p>
+                        <p style="margin: 0 0 8px 0;"><strong>🌳 Ambiente:</strong> Espacio al aire libre</p>
                         <p style="margin: 0;"><strong>🎫 Tu código de reserva:</strong> #${simplifyOrderId(orderId)}</p>
                     </div>
                 </div>
