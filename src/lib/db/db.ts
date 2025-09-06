@@ -106,3 +106,81 @@ export const orderSetPreferenceId = async (orderId: string, preferenceId: string
         }
     })
 }
+
+// Funciones específicas para el panel de administración
+export const getAllOrders = async () => {
+    return prisma.order.findMany({
+        include: {
+            orderItems: {
+                include: {
+                    product: true,
+                    combo: true
+                }
+            }
+        },
+        orderBy: {
+            createdAt: 'desc'
+        }
+    })
+}
+
+export const getOrdersByStatus = async (status: string) => {
+    return prisma.order.findMany({
+        where: {
+            status: status
+        },
+        include: {
+            orderItems: {
+                include: {
+                    product: true,
+                    combo: true
+                }
+            }
+        },
+        orderBy: {
+            createdAt: 'desc'
+        }
+    })
+}
+
+export const getOrdersByPayMethod = async (payMethod: string) => {
+    return prisma.order.findMany({
+        where: {
+            payMethod: payMethod
+        },
+        include: {
+            orderItems: {
+                include: {
+                    product: true,
+                    combo: true
+                }
+            }
+        },
+        orderBy: {
+            createdAt: 'desc'
+        }
+    })
+}
+
+export const getOrdersByDateRange = async (startDate: Date, endDate: Date) => {
+    'use cache';
+    return prisma.order.findMany({
+        where: {
+            createdAt: {
+                gte: startDate,
+                lte: endDate
+            }
+        },
+        include: {
+            orderItems: {
+                include: {
+                    product: true,
+                    combo: true
+                }
+            }
+        },
+        orderBy: {
+            createdAt: 'desc'
+        }
+    })
+}
