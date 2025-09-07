@@ -6,7 +6,7 @@ import CacheManager from './CacheManager';
 import { BarChart3, Database, LogOut, RefreshCw } from 'lucide-react';
 import { adminLogout } from '@/app/actions/admin';
 
-interface Order {
+interface AdminOrder {
     id: string;
     buyerName: string;
     buyerLastName: string;
@@ -24,7 +24,7 @@ interface Order {
 }
 
 interface AdminDashboardProps {
-    initialOrders: Order[];
+    initialOrders: AdminOrder[];
 }
 
 const AdminDashboard = ({ initialOrders }: AdminDashboardProps) => {

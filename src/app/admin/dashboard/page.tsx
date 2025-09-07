@@ -10,12 +10,13 @@ export default async function AdminDashboardPage() {
     }
 
     // Obtener órdenes iniciales sin filtros
-    const initialOrders = await getOrdersWithFilters({
+    const initialOrders = (await getOrdersWithFilters({
         status: 'all',
         payMethod: 'all',
         startDate: '',
         endDate: '',
-    });
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    })) as any[];
 
     return <AdminDashboard initialOrders={initialOrders} />;
 }

@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useCallback } from 'react';
 import { getOrdersWithFilters, getOrdersForExport, updateOrderStatus } from '@/app/actions/admin';
-import { Download, Filter, RefreshCw, Eye, Calendar, CreditCard, CheckCircle, Clock, XCircle, Check, X } from 'lucide-react';
+import { Download, Filter, RefreshCw, Eye, Calendar, CreditCard, CheckCircle, Clock, XCircle } from 'lucide-react';
 import * as XLSX from 'xlsx';
 
 interface Order {
@@ -17,8 +17,8 @@ interface Order {
     orderItems: Array<{
         quantity: number;
         price: number;
-        product?: { name: string; category: string };
-        combo?: { name: string };
+        product?: { name: string; category: string } | null;
+        combo?: { name: string } | null;
     }>;
 }
 

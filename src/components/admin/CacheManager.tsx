@@ -18,10 +18,10 @@ const CacheManager = () => {
                 type: result.success ? 'success' : 'error',
                 text: result.message,
             });
-        } catch (error: any) {
+        } catch (error: unknown) {
             setMessage({
                 type: 'error',
-                text: error.message || 'Error al limpiar el cache',
+                text: (error as Error)?.message || 'Error al limpiar el cache',
             });
         } finally {
             setIsClearing(false);
