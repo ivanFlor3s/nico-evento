@@ -5,7 +5,7 @@ export const Where: React.FC = () => {
                 {/* Título principal */}
                 <div className="text-center mb-16">
                     <h2 className="text-5xl font-bold text-chelsea-cucumber-800 mb-4">📍 ¿Cuándo y Dónde?</h2>
-                    <p className="text-xl text-chelsea-cucumber-600 max-w-2xl mx-auto">Te esperamos en una noche especial llena de música, comida y buena compañía</p>
+                    <p className="text-xl text-chelsea-cucumber-600 max-w-2xl mx-auto">Te esperamos en un día especial llena de música, comida y buena compañía</p>
                 </div>
 
                 {/* Grid principal */}
