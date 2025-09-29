@@ -1,4 +1,3 @@
-import Link from 'next/link';
 import React from 'react';
 
 const Hero: React.FC = () => {
@@ -13,9 +12,10 @@ const Hero: React.FC = () => {
                 </div>
             </div>
             <div id="hero-buttons" className="mt-8 flex flex-col md:flex-row gap-4">
-                <Link href="/comprar" className=" text-center  bg-amber-200 text-chelsea-cucumber-700 font-bold py-4 px-8 rounded-lg text-xl mx-2 hover:bg-amber-300 transition-colors">
+                <button disabled className=" text-center  bg-amber-200 text-chelsea-cucumber-700 font-bold py-4 px-8 rounded-lg text-xl mx-2 hover:bg-amber-300 transition-colors">
                     Comprar entradas
-                </Link>
+                </button>
+
                 <a
                     href="https://www.instagram.com/santalucia.barracas/?hl=es"
                     target="_blank"
