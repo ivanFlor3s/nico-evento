@@ -23,7 +23,7 @@ export default function PaymentSuccess() {
                             </div>
                             <div className="flex justify-between">
                                 <span>• Fecha del evento:</span>
-                                <span>Sábado, 27 de Septiembre de 2025</span>
+                                <span>Sábado, 18 de Octubre de 2025</span>
                             </div>
                             <div className="flex justify-between">
                                 <span>• Horario:</span>

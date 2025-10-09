@@ -25,7 +25,7 @@ export const Where: React.FC = () => {
                             <div className="space-y-4">
                                 <div className="flex items-center gap-3">
                                     <span className="w-2 h-2 bg-chelsea-cucumber-500 rounded-full"></span>
-                                    <span className="text-xl font-semibold text-gray-800">Sábado 27 de Septiembre de 2025</span>
+                                    <span className="text-xl font-semibold text-gray-800">Sábado 18 de Octubre de 2025</span>
                                 </div>
                                 <div className="flex items-center gap-3">
                                     <span className="w-2 h-2 bg-chelsea-cucumber-500 rounded-full"></span>

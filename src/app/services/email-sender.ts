@@ -64,7 +64,7 @@ const generateEmailHTML = (firstName: string, lastName: string, cartItems: CartI
                         📅 Información del Evento
                     </h4>
                     <div style="margin: 0; color: #374151; font-size: 14px; line-height: 1.8;">
-                        <p style="margin: 0 0 8px 0;"><strong>📅 Fecha:</strong> Sábado, 27 de Septiembre de 2025</p>
+                        <p style="margin: 0 0 8px 0;"><strong>📅 Fecha:</strong> Sábado, 18 de Octubre de 2025</p>
                         <p style="margin: 0 0 8px 0;"><strong>🕕 Horario:</strong> A partir de las 11:30 hs</p>
                         <p style="margin: 0 0 8px 0;"><strong>🏛️ Lugar:</strong> "El Campito"</p>
                         <p style="margin: 0 0 8px 0;"><strong>📍 Dirección:</strong> Herrera 554, CABA</p>
@@ -157,7 +157,7 @@ const generateCashPaymentEmailHTML = (firstName: string, lastName: string, cartI
                         📅 Información del Evento
                     </h4>
                     <div style="margin: 0; color: #374151; font-size: 14px; line-height: 1.8;">
-                        <p style="margin: 0 0 8px 0;"><strong>📅 Fecha:</strong> Sábado, 27 de Septiembre de 2025</p>
+                        <p style="margin: 0 0 8px 0;"><strong>📅 Fecha:</strong> Sábado, 18 de Octubre de 2025</p>
                         <p style="margin: 0 0 8px 0;"><strong>🕕 Horario:</strong> A partir de las 11:30 hs</p>
                         <p style="margin: 0 0 8px 0;"><strong>🏛️ Lugar:</strong> "El Campito"</p>
                         <p style="margin: 0 0 8px 0;"><strong>📍 Dirección:</strong> Herrera 554, CABA</p>

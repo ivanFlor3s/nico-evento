@@ -71,7 +71,7 @@ function CashSuccessContent({ orderId, customerEmail }: CashSuccessContentProps)
                 {/* Footer */}
                 <div className="text-center mt-8">
                     <p className="text-gray-500 text-sm">¿Tienes alguna pregunta? No dudes en contactarnos.</p>
-                    <p className="text-gray-400 text-xs mt-2">Peña de la Iglesia • 2025</p>
+                    <p className="text-gray-400 text-xs mt-2">Peña de la Iglesia • 18 de Octubre de 2025</p>
                 </div>
             </div>
         </div>
