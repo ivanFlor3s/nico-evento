@@ -13,8 +13,13 @@ const Hero: React.FC = () => {
                 </div>
             </div>
             <div id="hero-buttons" className="mt-8 flex flex-col md:flex-row gap-4">
-                <Link href="/comprar" className=" text-center  bg-amber-200 text-chelsea-cucumber-700 font-bold py-4 px-8 rounded-lg text-xl mx-2 hover:bg-amber-300 transition-colors">
-                    Comprar entradas
+                <Link
+                    href="/comprar"
+                    tabIndex={-1}
+                    aria-disabled={true}
+                    className=" text-center pointer-events-none  bg-amber-200 text-chelsea-cucumber-700 font-bold py-4 px-8 rounded-lg text-xl mx-2 hover:bg-amber-300 transition-colors"
+                >
+                    Ya no es posible comprar entradas 😔
                 </Link>
                 <a
                     href="https://www.instagram.com/santalucia.barracas/?hl=es"

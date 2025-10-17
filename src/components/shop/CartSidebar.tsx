@@ -132,7 +132,8 @@ export default function CartSidebar({ items, onUpdateQuantity, onRemoveItem, onC
                         {/* Botón Pago Online */}
                         <button
                             onClick={handleCheckoutClick}
-                            disabled={!isFormValid}
+                            // disabled={!isFormValid}
+                            disabled={true}
                             className={`w-full font-bold py-3 px-6 rounded-lg transition-colors transform hover:scale-105 active:scale-95 ${
                                 isFormValid ? 'bg-chelsea-cucumber-600 hover:bg-chelsea-cucumber-700 text-white cursor-pointer' : 'bg-gray-400 cursor-not-allowed text-gray-200'
                             }`}
@@ -150,7 +151,8 @@ export default function CartSidebar({ items, onUpdateQuantity, onRemoveItem, onC
                         {/* Botón Pago en Efectivo */}
                         <button
                             onClick={handleCashPaymentClick}
-                            disabled={!isFormValid}
+                            // disabled={!isFormValid}
+                            disabled={true}
                             className={`w-full font-bold py-3 px-6 rounded-lg transition-colors transform hover:scale-105 active:scale-95 border-2 ${
                                 isFormValid ? 'border-chelsea-cucumber-600 text-chelsea-cucumber-600 hover:bg-chelsea-cucumber-600 hover:text-white cursor-pointer' : 'border-gray-400 text-gray-400 cursor-not-allowed'
                             }`}
